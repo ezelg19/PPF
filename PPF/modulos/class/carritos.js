@@ -19,7 +19,8 @@ class Carritos {
             }
             return this.id
         } else {
-            await fs.promises.writeFile(this.rutaCarritos, JSON.stringify([...contArchivo, { ...obj }], null, 2), 'utf-8') }
+            await fs.promises.writeFile(this.rutaCarritos, JSON.stringify([...contArchivo, { ...obj }], null, 2), 'utf-8')
+        }
     }
 
     // async actualizar(obj) {
@@ -49,7 +50,7 @@ class Carritos {
             console.error('Error leer archivo: ' + error)
         }
     }
-    
+
     async deleteById(id) {
         const contArchivo = await this.getAll()
         const carritoABorrar = contArchivo.filter(item => item.id === id)
@@ -63,37 +64,41 @@ class Carritos {
         await fs.promises.writeFile(this.rutaCarritos, JSON.stringify([], null, 2), 'utf-8')
     }
 
-    async newProducto(productoAAgregar, idCarrito){
+    async newProducto(productoAAgregar, idCarrito) {
         const contArchivo = await this.getAll()
         const carrito = contArchivo.filter(item => item.id === idCarrito)
         if (carrito.length !== 0) {
-            carrito[0].producto.push(productoAAgregar[0])
+            carrito[0].productos.push(productoAAgregar[0])
             await this.deleteById(idCarrito)
             await this.save(carrito[0], false)
+            return {}
         } else { return { error: 'Carritos.actualizar()', descripcion: 'El id del carrito ingresado no existe en la Base de Datos' } }
     }
 
-    async getProductos(idCarrito){
+    async getProductos(idCarrito) {
         const contArchivo = await this.getAll()
         const carrito = contArchivo.filter(item => item.id === idCarrito)
         if (carrito.length !== 0) {
-            return carrito[0].producto
+            return carrito[0].productos
         } else { return { error: 'Carritos.getProductos()', descripcion: 'El id del carrito ingresado no existe en la Base de Datos' } }
     }
 
-    async deleteProductoById(idCarrito, idProducto){
+    async deleteProductoById(idCarrito, idProducto) {
         const contArchivo = await this.getAll()
         const carrito = contArchivo.filter(item => item.id === idCarrito)
         if (carrito.length !== 0) {
             const productos = carrito[0].productos
-            const filtrado = productos.filter(item => item.id !== idProducto)
-            carrito[0].productos = filtrado
-            await this.deleteById(idCarrito)
-            await this.save(carrito[0], false)
+            const existe_producto = productos.filter(item => item.id === idProducto)
+            if (existe_producto.length !== 0) {
+                const filtrado = productos.filter(item => item.id !== idProducto)
+                carrito[0].productos = filtrado
+                await this.deleteById(idCarrito)
+                await this.save(carrito[0], false)
+                return {}
+            } else { return { error: 'Carritos.deleteProductoById()', descripcion: 'El id del producto ingresado no existe en este carrito' } }
         } else { return { error: 'Carritos.deleteProductoById()', descripcion: 'El id del carrito ingresado no existe en la Base de Datos' } }
     }
-
 }
 
-const carritos = new Carritos('../fileSistem/carritos.json')
+const carritos = new Carritos('./modulos/fileSistem/carritos.json')
 module.exports = carritos

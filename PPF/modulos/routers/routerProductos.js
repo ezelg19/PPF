@@ -1,41 +1,48 @@
-import { Router } from 'express'
+const { Router } = require('express')
 const Productos = require('../class/productos.js')
 
 const router = Router()
 
 const producto = Productos
-const admin = false
+const admin = true
 
-router.get('/:id?',(req,res)=>{
-    const {id} = req.params
-    if(id !== 0){
-        res.send(producto.getById(id))
-    }else{
-        res.send(producto.getAll())
+router.get('/:id?', async (req, res) => {
+    const id = parseInt(req.params.id)
+    if (id) {
+        res.send(await producto.getById(id))
+    } else {
+        res.send(await producto.getAll())
     }
 })
 
-router.post('/',(req, res)=>{
-    if(admin){
-        const {nombre, descripcion, codigo, img, precio, stock} = req.body
+router.post('/', async (req, res) => {
+    if (admin) {
+        const { nombre, descripcion, codigo, img, precio, stock } = req.body
         timestamp = new Date().toLocaleString()
-        res.send(producto.save({timestamp:timestamp, nombre:nombre, descripcion:descripcion, codigo:codigo, img:img, precio:'$'+precio, stock:stock}))
-    }else{res.send({error:-1, descripcion:'ruta "/appi/productos" metodo POST no autorizado'})}
+        const controlador = await producto.save({ timestamp: timestamp, nombre: nombre, descripcion: descripcion, codigo: codigo, img: img, precio: '$' + precio, stock: parseInt(stock) })
+        // if(controlador){res.status(400).send(controlador)}
+        res.status(200).send('id: '+controlador)
+    } else { res.status(500).send({ error: -1, descripcion: 'ruta "/appi/productos" metodo POST no autorizado' }) }
 })
 
-router.put('/:id',(req,res)=>{
-    if(admin){
-        const {id,nombre, descripcion, codigo, img, precio, stock} = req.body
+router.put('/:id', async (req, res) => {
+    if (admin) {
+        const id = parseInt(req.params.id)
+        const { nombre, descripcion, codigo, img, precio, stock } = req.body
         timestamp = new Date().toLocaleString()
-        const producto = new Productos(__dirname+'../fileSistem/productos.json')
-        producto.actualizar({id, timestamp, nombre, descripcion, codigo, img, precio, stock})
-    }else{res.send({error:-1, descripcion:'ruta "/appi/productos/:id" metodo PUT no autorizado'})}
+        const controlador = await producto.actualizar({ id:id, timestamp:timestamp, nombre:nombre, descripcion:descripcion, codigo:codigo, img:img, precio:'$'+precio, stock: parseInt(stock) })
+        if(controlador){res.status(400).send(controlador)}
+        else{res.sendStatus(200)}
+    } else { res.status(500).send({ error: -1, descripcion: 'ruta "/appi/productos/:id" metodo PUT no autorizado' }) }
 })
 
-router.delete('/:id',(req,res)=>{
-    if(admin){
-    
-    }else{res.send({error:-1, descripcion:'ruta "/appi/productos/:id" metodo DELETE no autorizado'})}
+router.delete('/:id', async(req, res) => {
+    if (admin) {
+        const id = parseInt(req.params.id)
+        const controlador = await producto.deleteById(id)
+        if(controlador){res.status(400).send(controlador)}
+        else{res.sendStatus(200)}
+    } else { res.status(500).send({ error: -1, descripcion: 'ruta "/appi/productos/:id" metodo DELETE no autorizado' }) }
 })
 
 module.exports = router

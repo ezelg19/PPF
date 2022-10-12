@@ -63,5 +63,5 @@ class Productos {
     }
 }
 
-const productos = new Productos('../fileSistem/productos.json')
+const productos = new Productos('./modulos/fileSistem/productos.json')
 module.exports = productos

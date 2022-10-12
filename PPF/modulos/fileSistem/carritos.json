@@ -350,5 +350,31 @@
       }
     ],
     "id": 4
+  },
+  {
+    "timestamp": "11/10/2022, 15:40:50",
+    "productos": [
+      {
+        "timestamp": "11/10/2022, 15:32:18",
+        "nombre": "PrimerProductoPostman",
+        "descripcion": "algo tengo que poner",
+        "codigo": "120514",
+        "img": "no tengo",
+        "precio": "$1000",
+        "stock": 100,
+        "id": 28
+      },
+      {
+        "timestamp": "10/10/2022, 20:49:41",
+        "nombre": "algo",
+        "descripcion": "lalalalal",
+        "codigo": 3157328,
+        "img": null,
+        "precio": "$132",
+        "stock": 100,
+        "id": 10
+      }
+    ],
+    "id": 19
   }
 ]
