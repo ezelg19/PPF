@@ -10,16 +10,6 @@
     "stock": 1000
   },
   {
-    "id": 3,
-    "timestamp": "12/10/2022, 03:09:33",
-    "nombre": "Con imagen",
-    "descripcion": "tengo que poner otra cosa",
-    "codigo": "140512",
-    "img": "https://cdn.icon-icons.com/icons2/2596/PNG/512/ad_product_icon_155850.png",
-    "precio": "$900",
-    "stock": 1000
-  },
-  {
     "id": 5,
     "timestamp": "12/10/2022, 03:09:40",
     "nombre": "Con imagen",
@@ -276,6 +266,16 @@
     "descripcion": "tengo que poner otra cosa",
     "codigo": "140512",
     "img": "https://cdn.icon-icons.com/icons2/2596/PNG/512/ad_product_icon_155850.png",
+    "precio": "$900",
+    "stock": 1000
+  },
+  {
+    "id": 3,
+    "timestamp": "12/10/2022, 23:24:22",
+    "nombre": "Con imagen",
+    "descripcion": "tengo que poner otra cosa",
+    "codigo": "140512",
+    "img": "tampoco tengo",
     "precio": "$900",
     "stock": 1000
   }
