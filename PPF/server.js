@@ -5,8 +5,6 @@ const express = require('express')
 const routerProductos = require('./modulos/routers/routerProductos.js')
 const routerCarritos = require('./modulos/routers/routerCarritos.js')
 
-
-
 const app = express()
 // const http = new HttpServer(app)
 // const io = new IOServer(http)
@@ -20,9 +18,6 @@ app.set('view engine','')
 
 app.use('/appi/productos', routerProductos)
 app.use('/appi/carritos', routerCarritos)
-
-
-
 
 const PORT = 8080
 app.listen(PORT, () => { console.log(`escuchando ${PORT}`) } )

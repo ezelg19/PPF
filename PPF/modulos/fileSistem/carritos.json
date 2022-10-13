@@ -1,18 +1,7 @@
 [
   {
     "timestamp": "10/10/2022, 21:36:49",
-    "productos": [
-      {
-        "timestamp": "10/10/2022, 20:47:13",
-        "nombre": "algo",
-        "descripcion": "lalalalal",
-        "codigo": 3157328,
-        "img": null,
-        "precio": "$132",
-        "stock": 100,
-        "id": 4
-      }
-    ],
+    "productos": [],
     "id": 1
   },
   {

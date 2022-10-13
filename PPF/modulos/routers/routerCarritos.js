@@ -38,7 +38,7 @@ router.post('/:id/productos', async (req, res) => {
     else {
         const controlador = await carritos.newProducto(productoAAgregar, id)
         if (controlador.error) { res.status(400).send(controlador) }
-        else { res.sendStatus(200) }
+        else { res.status(200).redirect('/appi/productos')}
     }
 })
 
