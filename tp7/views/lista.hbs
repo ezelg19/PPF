@@ -1,0 +1,26 @@
+<h1>Productos</h1>
+{{#if productsExist}}
+    <table id='table' style="border-collapse: collapse;">
+        <thead class='thead-dark'>
+            <tr>
+                <th scope='col'>ID</th>
+                <th scope='col'>Title</th>
+                <th scope='col'>Price</th>
+                <th scope='col'>Thumbnail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+                <tr>
+                    <th scope='row'>{{this.id}}</th>
+                    <td>{{this.title}}</td>
+                    <td>$ {{this.price}}</td>
+                    <td><img src={{this.thumbnail}} alt="" border=1 height=48 width=48></img></th>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+{{else}}
+    <p>No hay productos para mostrar</p>
+{{/if}}

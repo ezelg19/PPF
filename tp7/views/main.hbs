@@ -1,0 +1,41 @@
+<h1> Cargar Productos </h1>
+    {{!-- <form action="/productos", method='POST'> --}}
+    <form onsubmit="return addArray(this)">
+        <label style="margin: 0.5%" for="title">Title</label></br>
+        <input type="text" name="title" id="title"></br></br>
+        <label style="margin: 0.5%" for="price">Price</label></br>
+        <input type="text" name="price" id="price"></br></br>
+        <label style="margin: 0.5%" for="thumbnail">Thumbnail</label></br>
+        <input type="file" name="thumbnail" id="thumbnail"></br></br>
+        <input type="submit" value="Save">
+    </form>
+</br>
+<div id="table">
+    <table style="border-collapse: collapse;width: 100%; border:1px solid;padding:1%;">
+        <thead class='thead-dark'>
+            <tr>
+                <th scope='col'>ID</th>
+                <th scope='col'>Title</th>
+                <th scope='col'>Price</th>
+                <th scope='col'>Thumbnail</th>
+            </tr>
+        </thead>
+        <tbody id="array">     
+        </tbody>      
+    </table>
+</div>
+
+{{!-- mensajes --}}
+<h3 style="text-align:center; width:500px">Chat</h3>
+<div id="chat">
+        <div id="mensajes"></div>
+</div>
+<form onsubmit="return addMensaje(this)">
+    <label foq="email">Email</label>
+    <input type="email" name="email" id="email">
+    <label for="mensaje">Mensaje</label>
+    <input type="text" name="mensaje" id="mensaje">
+    <input type="submit" value="Save">
+</form>
+
+
